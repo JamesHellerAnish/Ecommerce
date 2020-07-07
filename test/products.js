@@ -1,0 +1,116 @@
+const Category = require('../db').Category
+const Product = require('../db').Product
+const Cart = require('../db').Cart
+const Brand = require('../db').Brand
+const Image = require('../db').Image
+const Display = require('../db').Display
+function createProduct(){
+    Product.bulkCreate([
+        {
+            name:'Kais',
+            price:'3680',
+            image:'https://source.unsplash.com/user/erondu/800x600',
+            PTC:'bululu'
+        },
+        {
+            name:'Vances',
+            price:'6019',
+            image:'https://source.unsplash.com/user/erondu/800x600',
+            PTC:'bululu'
+        },
+        {
+            name:'Beverlys',
+            price:'5114',
+            image:'https://source.unsplash.com/user/erondu/800x600',
+            PTC:'bululu'
+        },
+    ])
+    .then(()=>{
+        Category.bulkCreate([
+            {
+                degree:1,
+                productId:5,
+                value:'Jakeems'
+            },
+            {
+                degree:3,
+                productId:7,
+                value:'Joels'
+            },
+            {
+                degree:3,
+                productId:4,
+                value:'Thanes'
+            },
+        ])
+        Image.bulkCreate([
+            {
+                value:'https://source.unsplash.com/user/erondu/800x600',
+                productId:1
+            },
+            {
+                value:'https://source.unsplash.com/user/erondu/800x600',
+                productId:1
+            },
+            {
+                value:'https://source.unsplash.com/user/erondu/800x600',
+                productId:1
+            },
+            {
+                value:'https://source.unsplash.com/user/erondu/800x600',
+                productId:1
+            },
+
+        ])
+        Brand.bulkCreate([
+            {
+                value:'Bomaby D',
+                productId:1
+            },
+            {
+                value:'PUMA',
+                productId:2
+            },
+            {
+                value:'Godrej',
+                productId:3
+            },
+        ])
+        Cart.bulkCreate([
+            {
+                userId:1,
+                productId:1,
+                quantity:3
+            },
+            {
+                userId:1,
+                productId:2,
+                quantity:3
+            },
+            {
+                userId:1,
+                productId:3,
+                quantity:3
+            },
+        ])
+    })
+    .then(()=>{
+        Display.bulkCreate([
+            {
+                productId:1,
+                categoryId:1,
+            },
+            {
+                productId:2,
+                categoryId:2,
+            },
+            {
+                productId:3,
+                categoryId:3,
+            },
+        ])
+    })
+}
+exports = module.exports = {
+    createProduct
+}
