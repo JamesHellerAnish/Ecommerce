@@ -11,7 +11,7 @@ const CategoryOption = require('../db').CategoryOption
 
 
 
-route.post('/createCategoryOptions',(req,res)=>{
+route.post('/createCategoryOptions',(req,res)=>{// creates options for catagories(Eg red,blue,green for category color)
     if(req.user.dataValues.username!='admin'){throw 'Error : Wrong key'}
     CategoryOption.create({
         categoryId:req.body.categoryId,
@@ -21,7 +21,7 @@ route.post('/createCategoryOptions',(req,res)=>{
     .catch((err)=>{res.send(err)})
 })
 
-route.post('/createCategories',(req,res)=>{
+route.post('/createCategories',(req,res)=>{// creates categories(Eg color,dimension)
     if(req.user.dataValues.username!='admin'){throw 'Error : Wrong key'}
     Category.create({
         value:req.body.value
@@ -30,20 +30,20 @@ route.post('/createCategories',(req,res)=>{
     .catch((err)=>{res.send(err)})
 })
 
-route.get('/leftAprrovalPartner',(req,res)=>{
+route.get('/leftAprrovalPartner',(req,res)=>{   //all partners who have not been approved
     PartnerInfo.findAll({
         where:{approved:false}
     })
     .then((data)=>{res.send(data)})
 })
-route.get('/leftAprrovalProduct',(req,res)=>{
+route.get('/leftAprrovalProduct',(req,res)=>{   //all products which have not been approved
     Product.findAll({
         where:{approved:false}
     })
     .then((data)=>{res.send(data)})
 })
 
-route.post('/approvePartner',(req,res)=>{
+route.post('/approvePartner',(req,res)=>{      // approve partner
     if(req.user.dataValues.username!='admin'){throw 'Error : Wrong key'}
     PartnerInfo.update(
         {
@@ -56,7 +56,7 @@ route.post('/approvePartner',(req,res)=>{
     .then((data)=>{res.send(data)})
     .catch((err)=>{res.send(err)})
 })
-route.post('/approveProduct',(req,res)=>{
+route.post('/approveProduct',(req,res)=>{   //approve product
     if(req.user.dataValues.username!='admin'){throw 'Error : Wrong key'}
     Product.update(
         {

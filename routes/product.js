@@ -10,7 +10,7 @@ const Image = require('../db').Image
 const Category = require('../db').Category
 const CategoryOption = require('../db').CategoryOption
 
-route.get('/getProducts',(req,res)=>{
+route.get('/getProducts',(req,res)=>{   //all products category wise
     CategoryOption.findAll({
         include:[{
             model:Product
@@ -21,13 +21,13 @@ route.get('/getProducts',(req,res)=>{
     })
 })
 
-route.get('getCategories',(req,res)=>{
+route.get('getCategories',(req,res)=>{  
     Category.findAll({
         where:{degree:req.body.degree}
     })
 })
 
-route.get('getImges',(req,res)=>{
+route.get('getImages',(req,res)=>{
     Image.findAll({
         where:{productId:req.body.productId}
     })
@@ -39,7 +39,7 @@ route.get('/getCategoryOptions',(req,res)=>{
     })
 })
 
-route.get('/checkCart',(req,res)=>{
+route.get('/checkCart',(req,res)=>{ // check if product already in Cart
     Cart.findOne({
         where:{
             userId:req.user.dataValues.id,
@@ -48,7 +48,7 @@ route.get('/checkCart',(req,res)=>{
     })
 })
 
-route.post('/addToCart',(req,res)=>{
+route.post('/addToCart',(req,res)=>{    // add product to cart
     console.log(req.user.dataValues)
     Cart.create({
         userId:req.user.dataValues.id,
@@ -59,7 +59,7 @@ route.post('/addToCart',(req,res)=>{
     .catch((err)=>{res.send(err)})
 })
 
-route.post('/updateQuantity',(req,res)=>{
+route.post('/updateQuantity',(req,res)=>{   //update the quantity of product in cart
     Cart.update(
         {
             quantity:req.body.quantity
@@ -73,7 +73,7 @@ route.post('/updateQuantity',(req,res)=>{
     )
 })
 
-route.post('/createProduct',(req,res)=>{
+route.post('/createProduct',(req,res)=>{    //create product
     Product.create({
         userId:req.user.dataValues.id,
         name:req.body.name,
@@ -92,7 +92,7 @@ route.post('/createProduct',(req,res)=>{
     })
 })
 
-route.post('/updateImages',(req,res)=>{
+route.post('/updateImages',(req,res)=>{ // update images for products(extra images)
     for(i=0;i<req.body.moreImages.length;i++){
         Image.create({
             value:req.body.moreImages[i],

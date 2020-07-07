@@ -5,7 +5,7 @@ const PartnerInfo = require('../db').PartnerInfo
 const BankInfo = require('../db').BankInfo
 const TaxInfo = require('../db').TaxInfo
 
-route.get('/isPartner',(req,res)=>{
+route.get('/isPartner',(req,res)=>{ // check if a user is a partner or not
     PartnerInfo.findOne({
         where:{userId:req.user.dataValues.id}
     })
@@ -20,7 +20,7 @@ route.get('/isPartner',(req,res)=>{
 })
 
 
-route.post('/createPartner',(req,res)=>{
+route.post('/createPartner',(req,res)=>{    //create partner account using a user account
     if(!req.user){throw 'Error:User not logged in'}
     PartnerInfo.create(
         {
@@ -46,7 +46,7 @@ route.post('/createPartner',(req,res)=>{
     .catch((err)=>{res.send(err)})
 })
 
-route.post('/updateBank',(req,res)=>{
+route.post('/updateBank',(req,res)=>{   //update Bank info
     if(!req.user){throw 'Error:User not logged in'}
     BankInfo.update(
         {
@@ -63,7 +63,7 @@ route.post('/updateBank',(req,res)=>{
     .catch((err)=>{res.send(err)})
 })
 
-route.post('/updateTax',(req,res)=>{
+route.post('/updateTax',(req,res)=>{    //update Tax info
     if(!req.user){throw 'Error:User not logged in'}
     TaxInfo.update(
         {
