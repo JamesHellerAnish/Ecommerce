@@ -1,21 +1,35 @@
 {
   "name": "passportlogin",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.16.2",
-    "express-session": "^1.15.6",
-    "hbs": "^4.0.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "hbs": "^4.1.1",
     "mysql2": "^1.5.1",
-    "passport": "^0.4.0",
+    "node-fetch": "^2.6.0",
+    "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "sequelize": "^4.28.1"
+    "sequelize": "^6.3.0",
+    "sqlite3": "^5.0.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JamesHellerAnish/Ecommerce.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JamesHellerAnish/Ecommerce/issues"
+  },
+  "homepage": "https://github.com/JamesHellerAnish/Ecommerce#readme",
+  "description": ""
 }

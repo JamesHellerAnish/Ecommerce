@@ -1,4 +1,4 @@
-const { PartnerInfo } = require('../db')
+const { PartnerInfo, Feature } = require('../db')
 const { where } = require('sequelize')
 
 const route = require('express').Router()
@@ -14,6 +14,16 @@ const CategoryOption = require('../db').CategoryOption
 route.post('/createCategoryOptions',(req,res)=>{// creates options for catagories(Eg red,blue,green for category color)
     if(req.user.dataValues.username!='admin'){throw 'Error : Wrong key'}
     CategoryOption.create({
+        featureId:req.body.featureId,
+        value:req.body.value
+    })
+    .then((data)=>{res.send(data)})
+    .catch((err)=>{res.send(err)})
+})
+
+route.post('/createFeatures',(req,res)=>{// creates features
+    if(req.user.dataValues.username!='admin'){throw 'Error : Wrong key'}
+    Feature.create({
         categoryId:req.body.categoryId,
         value:req.body.value
     })

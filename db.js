@@ -32,14 +32,25 @@ const User = db.define('users', {
     lastName: {
         type: Sequelize.STRING,
     },
+    mainPhoneNumber:{
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    mainEmail:{
+        type: Sequelize.STRING,
+        allowNull: false
+    },
 })
 
 
 const PhoneNumber = db.define('phoneNumbers',{
     value:{
-        type:Sequelize.INTEGER,
+        type:Sequelize.STRING,
+        allowNull:true,
+    },
+    verified:{
+        type:Sequelize.BOOLEAN,
         allowNull:false,
-        // unique:true
     }
 })
 PhoneNumber.belongsTo(User)
@@ -49,6 +60,10 @@ const Email = db.define('emails',{
         type:Sequelize.STRING,
         allowNull:false,
         // unique:true
+    },
+    verified:{
+        type:Sequelize.BOOLEAN,
+        allowNull:false,
     }
 })
 Email.belongsTo(User)
@@ -111,6 +126,16 @@ const Category = db.define('categories',{
         allowNull:false,
     }
 })
+Product.belongsTo(Category)
+
+const Feature = db.define('features',{
+    value:{
+        type:Sequelize.STRING,
+        allowNull:false,
+    }
+})
+
+Feature.belongsTo(Category)
 
 const CategoryOption = db.define('categoryOptions',{
     value:{
@@ -118,8 +143,8 @@ const CategoryOption = db.define('categoryOptions',{
         allowNull:false,
     }
 })
-Product.belongsTo(CategoryOption)
-CategoryOption.belongsTo(Category)
+
+CategoryOption.belongsTo(Feature)
 
 const Brand = db.define('brands',{
     value:{
@@ -141,7 +166,6 @@ User.belongsToMany(Product,{through:'carts'})
 const Display = db.define('diplays',{})
 CategoryOption.belongsToMany(Product,{through:'diplays'})
 Product.belongsToMany(CategoryOption,{through:'diplays'})
-
 
 // Partner Code
 
@@ -211,6 +235,7 @@ exports = module.exports = {
     Cart,
     Email,
     Category,
+    Feature,
     Address,
     PhoneNumber,
     CategoryOption,
