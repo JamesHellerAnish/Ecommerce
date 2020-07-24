@@ -37,31 +37,80 @@ $('#login-head').click(function() {
       }
   });
 
+$('.form-row #phone').change(function() {
+  var phone = document.getElementById('phone');
+  if(phone.checkValidity()) {
+    $('.send-otp').css('cursor', 'pointer');
+  }
+  else {
+    $('.send-otp').css('cursor', 'not-allowed');
+  }
+})
+$('.send-otp').hover(function(){
+  if(phone.checkValidity()) {
+    $('.send-otp').css('text-decoration', 'underline');
+  }
+}, function() {
+  if(phone.checkValidity()) {
+    $('.send-otp').css('text-decoration', 'none');
+  }
+})
 
-// $('#login-form').submit(function(event) {
-//     event.preventDefault();
+/******api calls****/
 
-//     $.post('/login/login', {
-//         username: $('#username2').val(),
-//         password: $('#password2').val()
-//     }, (data) => {
-//         $('#username2').val("");
-//         $('#pasword2').val("");
-//     });
-// });
+$('.send-otp').click(function() {
+  var phone = document.getElementById('phone');
+  if(phone.checkValidity()) {
+    $.post('/login/sendOTP', {phoneNumber: Number($('.form-row #phone').val())}, (data) => {
+      if(data.type === 'success') {
+        alert("OTP sent successfully!");
+      }
+      else if(data.type === 'error') {
+        alert('An error occurred! Please try again');
+      }
+      $('.resend-otp').fadeIn();
+    })
+  }
+})
 
-// $('#signup-form').submit(function(event) {
-//     event.preventDefault();
+$('.resend-otp').click(function() {
+  var phone = document.getElementById('phone');
+  if(phone.checkValidity()) {
+    $.post('/login/resendOTP', {phoneNumber: Number($('.form-row #phone').val())}, (data) => {
+      if(data.type === 'success') {
+        alert('OTP sent successfully!');
+      }
+      else if(data.type === 'error') {
+        alert('An error occurred! Please try again');
+      }
+    })
+  }
+})
 
-//     $.post('/login/signup', {
-//         username: $('#username1').val(),
-//         password: $('#password1').val(),
-//         firstName: $('#first-name').val(),
-//         lastName: $('#last-name').val()
-//     }, (data) => {
-//         $('#username1').val("");
-//         $('#password1').val("");
-//         $('#first-name').val("");
-//         $('#last-name').val("");
-//     });
-// });
+$('.page-sign-up #signup-form').submit(function(event) {
+  event.preventDefault();
+  $.post('/login/verifyOTP', {phoneNumber: Number($('.form-row #phone').val()), otp: Number($('.form-row #otp').val())}, (data) => {
+    if(data.type === 'success') {
+
+      var credentials = {
+        username: $('.form-row #username1').val(),
+        password: $('.form-row #password1').val(),
+        firstName: $('.form-row #first-name').val(),
+        lastName: $('.form-row #last-name').val(),
+        mainPhoneNumber: Number($('.form-row #phone').val()),
+        mainEmail: $('.form-row #email').val()
+      }
+      $.post('/login/signup', credentials, (user) => {
+        if(typeof user === 'object') {
+          if(!alert('Registered successfully! Login to continue')) window.location.reload(true);
+        }
+        else {
+          alert('An error occurred! Please try again');
+        }
+      })
+    }
+    else if(data.type === 'error') {
+      alert('Verification failed! Please try again');
+    }
+  })
+})

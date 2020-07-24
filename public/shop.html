@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
   </head>
-  <body class="goto-here">
+  <body class="goto-here" onload="clearCheckboxes()">
 	<!-- <div class="py-1 bg-black">
     	<div class="container">
     		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
@@ -61,15 +61,17 @@
 	          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
 	          <li class="nav-item active dropdown" style="cursor: pointer;">
               <div class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</div>
-              <div class="dropdown-menu" aria-labelledby="dropdown04">
-              	<a class="dropdown-item" href="shop.html">Shop</a>
-                <a class="dropdown-item" href="product-single.html">Single Product</a>
-                <a class="dropdown-item" href="cart.html">Cart</a>
-                <a class="dropdown-item" href="checkout.html">Checkout</a>
+              <div class="dropdown-menu categories-nav-menu" aria-labelledby="dropdown04">
+              	<!-- <a class="dropdown-item" href="shop.html">Bedding</a>
+                <a class="dropdown-item" href="shop.html">Bed-Elements</a>
+                <a class="dropdown-item" href="shop.html">Cushions</a>
+				<a class="dropdown-item" href="shop.html">Curtains</a>
+				<a class="dropdown-item" href="shop.html">Bath</a>
+				<a class="dropdown-item" href="shop.html">Rugs</a> -->
               </div>
             </li>
 	          
-	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+	          <li class="nav-item"><a href="partner.html" class="nav-link">Partners</a></li>
 			  <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
 			  <li class="nav-item"><a href="signup.html" class="nav-link">Login/ Sign Up</a></li>
 			  <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
@@ -85,7 +87,7 @@
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
           	
-            <h1 class="mb-0 bread">Collection Name</h1>
+            <h1 class="mb-0 bread category-name">Collections</h1>
           </div>
         </div>
       </div>
@@ -93,12 +95,12 @@
 
     <section class="ftco-section bg-light" style="padding-top: 2em;">
     	<div class="container">
-			<div class="row" style="margin-bottom: 2em;"> 
-				<div class="col-md-10"></div>
-				<div class="col-md-2">
-					<button class="sort-filter" title="Filter"><i class="fa fa-filter"></i></button>
+			<div class="row" style="margin-bottom: 2em;">
+				<div class="col-md-4 col-lg-2"></div>
+				<div class="col-md-8 col-lg-10">
+					<button class="sort-filter" title="Filter" id="filter-btn"><i class="fa fa-filter"></i>&nbsp; Filters</button>
 					<div class="dropdown">
-						<button class="sort-filter" type="button" data-toggle="dropdown" title="Sort"><i class="fa fa-sort"></i></button>
+						<button class="sort-filter" type="button" data-toggle="dropdown" title="Sort"><i class="fa fa-sort"></i>&nbsp; <span class="sort-method-selected">Sort By:</span></button>
 						<ul class="dropdown-menu dropdown-menu-right" id="sort-list">
 							<li id="sort-by">Sort By:</li>
 							<!-- <li><a href="#">Most Relevant</a></li>
@@ -108,12 +110,30 @@
 							<li><a href="#" id="l2h">Price: Low to High</a></li>
 							<hr style="margin: 0;">
 							<li><a href="#" id="h2l">Price: High to Low</a></li>
+							<hr style="margin: 0;">
+							<li><a href="#" id="a2z">Title: A to Z</a></li>
+							<hr style="margin: 0;">
+							<li><a href="#" id="z2a">Title: Z to A</a></li>
 						</ul>
 					</div>
 					
 				</div>
 			</div>
     		<div class="row">
+				<div class="col-md-4 col-lg-2 sidebar filter-options">
+					<i class="fa fa-times filter-options-hide"></i>
+					<h4>SHOP BY</h4><hr style="margin-top: 0px;">
+		    		<!-- <div class="sidebar-box-2">
+						<h2 class="heading mb-2 side-categories">Color<span style="float: right;">+</span></h2>
+		    			<ul class="side-drop">
+							<li><input type="checkbox" id="red">&emsp;<label for="red">Red</label></li>
+							<li><input type="checkbox" id="red">&emsp;<label for="red">Red</label></li>
+						</ul>
+						<hr style="margin-top: 0px;">
+		    		</div> -->
+		    		
+					
+    			</div>
     			<div class="col-md-8 col-lg-10 order-md-last">
     				<div class="row row-products">
 		    			
@@ -129,42 +149,7 @@
 		        </div>
 		    	</div>
 
-		    	<div class="col-md-4 col-lg-2 sidebar">
-		    		<div class="sidebar-box-2">
-						<h2 class="heading mb-2 side-categories">Bedding<span style="float: right;">-</span></h2>
-						<hr style="margin-top: 0px;">
-		    			<ul class="side-drop" style="display: block;">
-		    				<li><a href="#">Bedsheets</a></li>
-								<li><a href="#">Bed Cover</a></li>
-								<li><a href="#">Bedding Set</a></li>
-								<li><a href="#">Quilts</a></li>
-								<li><a href="#">Dohar</a></li>
-								
-		    			</ul>
-		    		</div>
-		    		<div class="sidebar-box-2">
-						<h2 class="heading mb-2 side-categories">Bath<span style="float: right;">+</span></h2>
-						<hr style="margin-top: 0px;">
-		    			<ul class="side-drop">
-		    				<li><a href="#">Hand Towels</a></li>
-								<li><a href="#">Bath Towels</a></li>
-								
-		    			</ul>
-		    		</div>
-		    		<div class="sidebar-box-2">
-		    			<h2 class="heading mb-2"><a href="#">Rugs</a></h2>
-		    			<hr style="margin-top: 0px;">
-		    		</div>
-					<div class="sidebar-box-2">
-		    			<h2 class="heading mb-2"><a href="#">Cushions</a></h2>
-		    			<hr style="margin-top: 0;">
-					</div>
-					<div class="sidebar-box-2">
-		    			<h2 class="heading mb-2"><a href="#">Ready Made Curtains</a></h2>
-		    			<hr style="margin-top: 0;">
-					</div>
-					
-    			</div>
+		    	
     		</div>
     	</div>
     </section>
@@ -270,13 +255,34 @@
 
   <script>
 	  $('.side-categories').click(function() {
-		$(this).next().next().slideToggle('fast');
+		$(this).next().slideToggle('fast');
 		if($(this).find('span').html() === '-') {
 			$(this).find('span').html('+');
 		}
 		else {
 			$(this).find('span').html('-');
 		}
+	  });
+
+	  function clearCheckboxes() {
+		$('.sidebar input[type=checkbox]').prop('checked', false);
+	  }
+
+	  $('button#filter-btn').click(function() {
+		  if($('.sidebar.filter-options').css('display') === 'none') {
+			$('.sidebar.filter-options').show();
+			$('.sidebar.filter-options').animate({'width': '300px'}, 200);
+		  }
+		  else {
+			$('.sidebar.filter-options').animate({'width': '0'}, 200, function() {
+				$('.sidebar.filter-options').hide();
+			});
+		  }
+	  })
+	  $('.filter-options-hide').click(function() {
+		$('.sidebar.filter-options').animate({'width': '0'}, 200, function() {
+			$('.sidebar.filter-options').hide();
+		});
 	  })
   </script>
     

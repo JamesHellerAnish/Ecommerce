@@ -19,9 +19,9 @@ route.post('/signup', (req, res) => {
         lastName: req.body.lastName,
         mainPhoneNumber:req.body.mainPhoneNumber,
         mainEmail:req.body.mainEmail
-    }).then((createdUser) => {
-        res.redirect('/login')
     })
+    .then((createdUser) => {res.send('Success')})
+    .catch((err)=>{res.send(err)})
 })
 
 route.post('/sendOTP',(req,res)=>{

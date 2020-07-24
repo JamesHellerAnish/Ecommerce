@@ -44,14 +44,16 @@
 	          <li class="nav-item dropdown" style="cursor: pointer;">
               <div class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</div>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
-              	<a class="dropdown-item" href="shop.html">Shop</a>
-                <a class="dropdown-item" href="product-single.html">Single Product</a>
-                <a class="dropdown-item" href="cart.html">Cart</a>
-                <a class="dropdown-item" href="checkout.html">Checkout</a>
+              	<a class="dropdown-item" href="shop.html">Bedding</a>
+                <a class="dropdown-item" href="shop.html">Bed-Elements</a>
+                <a class="dropdown-item" href="shop.html">Cushions</a>
+                <a class="dropdown-item" href="shop.html">Curtains</a>
+                <a class="dropdown-item" href="shop.html">Bath</a>
+                <a class="dropdown-item" href="shop.html">Rugs</a>
               </div>
             </li>
 	          
-	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+	          <li class="nav-item"><a href="partner.html" class="nav-link">Partners</a></li>
 			  <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
 			  <li class="nav-item active"><a href="signup.html" class="nav-link">Login/ Sign Up</a></li>
 			  <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
@@ -76,10 +78,10 @@
 	<section class="ftco-section bg-light" style="padding:0">
         <div class="page-content">
             <div class="form-v7-content">
-                <div class="form-left ftco-animate">
-                    <img src="images/product-1.jpg" alt="form">
-                    <!-- <p class="text-1">Sign Up</p>
-                    <p class="text-2">Privaci policy & Term of service</p> -->
+                <div class="form-left ftco-animate bg-dark">
+                    <!-- <img src="images/product-1.jpg"> -->
+                    <!-- <h2 class="text-center mt-4 pt-2 text-white"><b>WELCOME</b></h2>
+                    <p class="text-white text-center pl-4 pr-4 pt-2">A one stop destination for all your Home Decor needs!</p> -->
                 </div>
                 <div class="form-detail ftco-animate bg-light">
                     <center>
@@ -89,64 +91,70 @@
                         </div>
                     </center>
                     <div class="page-sign-up">
-                        <form action="/login/signup" method="post" id="signup-form">
+                        <form action="/login/signup" method="POST" id="signup-form">
                             <div class="form-row">
                                 <label for="first-name">FIRST NAME</label>
-                                <input type="text" name="first-name" id="first-name" class="input-text" required>
+                                <input type="text" name="firstName" id="first-name" class="input-text" required>
                                 <i class="fa fa-user-o form-icon"></i>
                             </div>
                             <div class="form-row">
                                 <label for="last-name">LAST NAME</label>
-                                <input type="text" name="last-name" id="last-name" class="input-text" required>
+                                <input type="text" name="lastName" id="last-name" class="input-text" required>
                                 <i class="fa fa-user-o form-icon"></i>
                             </div>
                             <div class="form-row">
                                 <label for="username1">USERNAME</label>
-                                <input type="text" name="username1" id="username1" class="input-text" required>
+                                <input type="text" name="username" id="username1" class="input-text" required>
                                 <i class="fa fa-user form-icon"></i>
                             </div>
                             <div class="form-row">
                                 <label for="password1">PASSWORD</label>
-                                <input type="password" name="password1" id="password1" class="input-text" required>
+                                <input type="password" name="password" id="password1" class="input-text" required>
                                 <i class="fa fa-lock form-icon"></i>
                                 <i class="fa fa-eye pass-eye" id="eye1"></i>
                             </div>
                             <div class="form-row">
+                              <label for="email">EMAIL</label>
+                              <input type="email" name="email" id="email" class="input-text" required>
+                              <i class="fa fa-envelope form-icon"></i>
+                          </div>
+                            <div class="form-row">
                                 <label for="phone">PHONE NUMBER</label>
-                                <input type="tel" name="phone" id="phone" pattern="^\d{10}$" class="input-text" >
+                                <input type="tel" name="phone" id="phone" pattern="^\d{10}$" class="input-text" required >
                                 <i class="fa fa-phone form-icon"></i>
                             </div>
+                            <span class="resend-otp">Resend OTP</span>
                             <span class="send-otp">Send OTP</span>
                             <div class="form-row">
                                 <label for="otp">OTP</label>
-                                <input type="tel" name="otp" id="otp" pattern="^\d{5}$" class="input-text" >
+                                <input type="tel" name="otp" id="otp" pattern="^[0-9]*$" class="input-text" required >
                                 <i class="fa fa-key form-icon"></i>
                             </div>
                            
                             <div class="form-row-last">
-                                <input type="submit" name="register" class="register btn btn-orange" value="Register">
+                                <input type="submit" class="register btn btn-orange" value="Verify and Register">
                                 
                             </div>
                         </form>
                     </div>
 
                     <div class="page-login">
-                        <form action="/login/login" method="post" id="login-form">
+                        <form action="/login/login" method="POST" id="login-form">
                             <div class="form-row">
                                 <label for="username2">USERNAME</label>
-                                <input type="text" name="username2" id="username2" class="input-text" required>
+                                <input type="text" name="username" id="username2" class="input-text" required>
                                 <i class="fa fa-user form-icon"></i>
                             </div>
                             
                             <div class="form-row">
                                 <label for="password2">PASSWORD</label>
-                                <input type="password" name="password2" id="password2" class="input-text" required>
+                                <input type="password" name="password" id="password2" class="input-text" required>
                                 <i class="fa fa-lock form-icon"></i>
                                 <i class="fa fa-eye pass-eye" id="eye2"></i>
                             </div>
                             
                             <div class="form-row-last">
-                                <input type="submit" name="login" class="login btn btn-orange" value="Login">
+                                <input type="submit" class="login btn btn-orange" value="Login">
                                 
                             </div>
                         </form>

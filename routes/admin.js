@@ -7,13 +7,40 @@ const Product = require('../db').Product
 const Cart = require('../db').Cart
 const Image = require('../db').Image
 const Category = require('../db').Category
-const CategoryOption = require('../db').CategoryOption
+const FeatureOption = require('../db').FeatureOption
+const {PTC,Brand} = require('../db')
 
-
-
-route.post('/createCategoryOptions',(req,res)=>{// creates options for catagories(Eg red,blue,green for category color)
+route.post('/createBrand',(req,res)=>{
     if(req.user.dataValues.username!='admin'){throw 'Error : Wrong key'}
-    CategoryOption.create({
+    Brand.create({
+        value:req.body.value
+    })
+    .then((data)=>{res.send(data)})
+    .catch((err)=>{res.send(err)})
+})
+
+route.post('/createPTC',(req,res)=>{
+    if(req.user.dataValues.username!='admin'){throw 'Error : Wrong key'}
+    PTC.create({
+        name:req.body.name,
+        value:req.body.value
+    })
+    .then((data)=>{res.send(data)})
+    .catch((err)=>{res.send(err)})
+})
+
+route.post('/createCategories',(req,res)=>{// creates categories(Eg color,dimension)
+    if(req.user.dataValues.username!='admin'){throw 'Error : Wrong key'}
+    Category.create({
+        value:req.body.value
+    })
+    .then((data)=>{res.send(data)})
+    .catch((err)=>{res.send(err)})
+})
+
+route.post('/createFeatureOption',(req,res)=>{// creates options for catagories(Eg red,blue,green for category color)
+    if(req.user.dataValues.username!='admin'){throw 'Error : Wrong key'}
+    FeatureOption.create({
         featureId:req.body.featureId,
         value:req.body.value
     })
@@ -31,14 +58,7 @@ route.post('/createFeatures',(req,res)=>{// creates features
     .catch((err)=>{res.send(err)})
 })
 
-route.post('/createCategories',(req,res)=>{// creates categories(Eg color,dimension)
-    if(req.user.dataValues.username!='admin'){throw 'Error : Wrong key'}
-    Category.create({
-        value:req.body.value
-    })
-    .then((data)=>{res.send(data)})
-    .catch((err)=>{res.send(err)})
-})
+
 
 route.get('/leftAprrovalPartner',(req,res)=>{   //all partners who have not been approved
     PartnerInfo.findAll({

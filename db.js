@@ -34,11 +34,11 @@ const User = db.define('users', {
     },
     mainPhoneNumber:{
         type: Sequelize.STRING,
-        allowNull: false
+        // allowNull: false
     },
     mainEmail:{
         type: Sequelize.STRING,
-        allowNull: false
+        // allowNull: false
     },
 })
 
@@ -103,11 +103,12 @@ const Product = db.define('products',{
         type:Sequelize.STRING,
         allowNull:false
     },
-    PTC:{
-        type:Sequelize.STRING,
-    },
     approved:{
         type:Sequelize.BOOLEAN,
+    },
+    description:{
+        type:Sequelize.STRING,
+        // allowNull:false
     }
 })
 Product.belongsTo(User)
@@ -137,14 +138,26 @@ const Feature = db.define('features',{
 
 Feature.belongsTo(Category)
 
-const CategoryOption = db.define('categoryOptions',{
+const FeatureOption = db.define('featureOptions',{
     value:{
         type:Sequelize.STRING,
         allowNull:false,
     }
 })
 
-CategoryOption.belongsTo(Feature)
+FeatureOption.belongsTo(Feature)
+
+const PTC = db.define('PTCs',{
+    name:{
+        type:Sequelize.STRING,
+        allowNull:false
+    },
+    value:{
+        type:Sequelize.INTEGER,
+        allowNull:false
+    }
+})
+Product.belongsTo(PTC)
 
 const Brand = db.define('brands',{
     value:{
@@ -163,9 +176,11 @@ const Cart = db.define('carts',{
 Product.belongsToMany(User,{through:'carts'})
 User.belongsToMany(Product,{through:'carts'})
 
+
+
 const Display = db.define('diplays',{})
-CategoryOption.belongsToMany(Product,{through:'diplays'})
-Product.belongsToMany(CategoryOption,{through:'diplays'})
+FeatureOption.belongsToMany(Product,{through:'diplays'})
+Product.belongsToMany(FeatureOption,{through:'diplays'})
 
 // Partner Code
 
@@ -221,6 +236,44 @@ const BankInfo = db.define('bankInfos',{
 })
 BankInfo.belongsTo(User)
 
+//Order Code
+
+const Order = db.define('orders',{
+
+})
+
+const OrderedItem = db.define('orderItems',{
+    id:{
+        type:Sequelize.STRING,
+        allowNull:false,
+        primaryKey:true,
+        unique:true
+    },
+    quantity:{
+        type:Sequelize.STRING,
+        allowNull:false
+    },
+    transactionId:{
+        type:Sequelize.STRING,
+        allowNull:false,
+    },
+    price:{
+        type:Sequelize.INTEGER,
+        allowNull:false,
+    },
+    receiptId:{
+        type:Sequelize.STRING,
+        allowNull:false
+    }
+})
+
+Order.belongsToMany(Product,{through:'orderItems'})
+Product.belongsToMany(Order,{through:'orderItems'})
+Order.belongsTo(User)
+Order.belongsTo(PhoneNumber)
+Order.belongsTo(Address)
+
+
 
 db.sync().then(() => console.log("Database is ready"))
 
@@ -238,7 +291,8 @@ exports = module.exports = {
     Feature,
     Address,
     PhoneNumber,
-    CategoryOption,
+    FeatureOption,
     Brand,
-    Display
+    Display,
+    PTC
 }
